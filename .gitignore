@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+Publish/
+Tools/Installer/FBCaseTool.iss
+Setup.FBCaseTool.*.exe
+
+# Local FogBugz config (URL + API token) — never commit
+config.json

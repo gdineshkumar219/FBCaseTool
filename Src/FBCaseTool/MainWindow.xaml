@@ -1,0 +1,53 @@
+<Window x:Class="FBCaseTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:FBCaseTool"
+        Title="{Binding Title}"
+        Icon="AppIcon.ico"
+        Width="480" MinWidth="440"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="{DynamicResource Brush.Window}"
+        TextElement.Foreground="{DynamicResource Brush.Text}"
+        FontFamily="Segoe UI" FontSize="13" ShowInTaskbar="True">
+   <Window.Resources>
+      <DataTemplate DataType="{x:Type local:UpdateCaseViewModel}">
+         <local:UpdateCaseView />
+      </DataTemplate>
+      <DataTemplate DataType="{x:Type local:FetchCaseVM}">
+         <local:FetchCaseView />
+      </DataTemplate>
+   </Window.Resources>
+   <Grid Margin="16">
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <!-- Fetch / Update mode toggle: a rounded pill with an animated accent segment. -->
+      <Border Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,14" Padding="3"
+              Background="{DynamicResource Brush.Surface}" BorderBrush="{DynamicResource Brush.Border}"
+              BorderThickness="1" CornerRadius="8" SnapsToDevicePixels="True">
+         <StackPanel Orientation="Horizontal">
+            <RadioButton Content="Update" GroupName="Mode" Style="{StaticResource ModeToggle}"
+                         IsChecked="{Binding IsUpdateMode, Mode=TwoWay}" />
+            <RadioButton Content="Fetch" GroupName="Mode" Style="{StaticResource ModeToggle}"
+                         IsChecked="{Binding IsFetchMode, Mode=TwoWay}" />
+         </StackPanel>
+      </Border>
+
+      <!-- Content card: an underlay carries the soft shadow so the hosted view stays crisp. -->
+      <Grid Grid.Row="1">
+         <Border CornerRadius="10" Background="{DynamicResource Brush.Surface}">
+            <Border.Effect>
+               <DropShadowEffect BlurRadius="14" ShadowDepth="2" Opacity="0.10" />
+            </Border.Effect>
+         </Border>
+         <Border CornerRadius="10" Padding="16" Background="{DynamicResource Brush.Surface}"
+                 BorderBrush="{DynamicResource Brush.Border}" BorderThickness="1">
+            <ContentControl Content="{Binding CurrentViewModel}" />
+         </Border>
+      </Grid>
+   </Grid>
+</Window>

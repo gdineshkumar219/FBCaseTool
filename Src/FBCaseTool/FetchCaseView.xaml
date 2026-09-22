@@ -1,0 +1,80 @@
+<UserControl x:Class="FBCaseTool.FetchCaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FontFamily="Segoe UI" FontSize="13">
+   <UserControl.InputBindings>
+      <KeyBinding Key="Escape" Command="{Binding CancelCommand}" />
+   </UserControl.InputBindings>
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <DockPanel Grid.Row="0">
+         <Label DockPanel.Dock="Left" Content="Case:" VerticalAlignment="Center" />
+         <TextBox VerticalAlignment="Center" Margin="8,0,0,0" Tag="Enter case number"
+                  IsEnabled="{Binding IsIdle}"
+                  Text="{Binding CaseId, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.InputBindings>
+               <KeyBinding Key="Enter" Command="{Binding FetchCommand}" />
+            </TextBox.InputBindings>
+         </TextBox>
+      </DockPanel>
+
+      <Label Grid.Row="1" Content="Output folder:" />
+      <DockPanel Grid.Row="2">
+         <Button DockPanel.Dock="Right" Content="_Browse..." MinWidth="84" Margin="8,0,0,0"
+                 Command="{Binding BrowseCommand}" />
+         <TextBox VerticalAlignment="Center"
+                  IsEnabled="{Binding IsIdle}"
+                  Text="{Binding OutputFolder, UpdateSourceTrigger=PropertyChanged}" />
+      </DockPanel>
+
+      <Label Grid.Row="3" Content="Attachments:" />
+      <ComboBox Grid.Row="4" HorizontalAlignment="Left" MinWidth="160"
+                IsEnabled="{Binding IsIdle}"
+                ItemsSource="{Binding AttachmentModes}"
+                SelectedItem="{Binding SelectedAttachmentMode}" />
+
+      <Border Grid.Row="5" Margin="0,12,0,0" Style="{StaticResource InfoAlert}"
+              Visibility="{Binding HasStatus, Converter={StaticResource BoolToVis}}">
+         <Grid>
+            <Border Width="4" HorizontalAlignment="Left" Margin="5" CornerRadius="2"
+                    Background="{DynamicResource Brush.InfoBar}" />
+            <TextBlock Margin="18,8,10,8" TextWrapping="Wrap"
+                       Foreground="{DynamicResource Brush.InfoFg}" Text="{Binding StatusMessage}" />
+         </Grid>
+      </Border>
+
+      <Border Grid.Row="6" Margin="0,8,0,0" Style="{StaticResource WarnAlert}"
+              Visibility="{Binding HasError, Converter={StaticResource BoolToVis}}">
+         <Grid>
+            <Border Width="4" HorizontalAlignment="Left" Margin="5" CornerRadius="2"
+                    Background="{DynamicResource Brush.WarnBar}" />
+            <TextBlock Margin="18,8,10,8" TextWrapping="Wrap"
+                       Foreground="{DynamicResource Brush.WarnFg}" Text="{Binding ErrorMessage}" />
+         </Grid>
+      </Border>
+
+      <DockPanel Grid.Row="7" Margin="0,16,0,0" LastChildFill="False">
+         <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center"
+                     Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}">
+            <ProgressBar Style="{StaticResource SlimBar}" Width="120" VerticalAlignment="Center" />
+            <TextBlock Text="Working&#8230;" Margin="10,0,0,0" VerticalAlignment="Center"
+                       Foreground="{DynamicResource Brush.TextMuted}" />
+         </StackPanel>
+         <Button DockPanel.Dock="Right" Content="Fetch" IsDefault="True" Margin="8,0,0,0"
+                 Style="{StaticResource PrimaryButton}" Command="{Binding FetchCommand}" />
+         <Button DockPanel.Dock="Right" Content="Close" Command="{Binding CancelCommand}" />
+         <Button DockPanel.Dock="Right" Content="Open _Folder" Margin="0,0,8,0"
+                 Command="{Binding OpenFolderCommand}" />
+      </DockPanel>
+   </Grid>
+</UserControl>

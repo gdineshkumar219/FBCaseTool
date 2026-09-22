@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>FBCaseTool</AssemblyName>
+    <RootNamespace>FBCaseTool</RootNamespace>
+    <OutDir>..\bin\</OutDir>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ApplicationIcon>..\..\Wad\AppIcon\AppIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FBLib\FBLib.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config.example.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="config.json" Condition="Exists('config.json')" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\..\Wad\AppIcon\AppIcon.ico" Link="AppIcon.ico" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,41 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+   <!-- Fluent Clean · Light theme tokens. Swapped wholesale for the Dark set at startup. -->
+
+   <!-- Colour values used by effects (DropShadow needs a Color, not a Brush). -->
+   <Color x:Key="Color.Accent">#0D6EFD</Color>
+
+   <!-- Surfaces -->
+   <SolidColorBrush x:Key="Brush.Window"        Color="#F4F5F7" />
+   <SolidColorBrush x:Key="Brush.Surface"       Color="#FFFFFF" />
+   <SolidColorBrush x:Key="Brush.SurfaceMuted"  Color="#EDEEF1" />
+
+   <!-- Lines -->
+   <SolidColorBrush x:Key="Brush.Border"        Color="#E2E4E8" />
+   <SolidColorBrush x:Key="Brush.BorderStrong"  Color="#C6CAD2" />
+
+   <!-- Text -->
+   <SolidColorBrush x:Key="Brush.Text"          Color="#1F2430" />
+   <SolidColorBrush x:Key="Brush.TextMuted"     Color="#5B6472" />
+
+   <!-- Accent -->
+   <SolidColorBrush x:Key="Brush.Accent"        Color="#0D6EFD" />
+   <SolidColorBrush x:Key="Brush.AccentHover"   Color="#0B5ED7" />
+   <SolidColorBrush x:Key="Brush.AccentPressed" Color="#0A58CA" />
+   <SolidColorBrush x:Key="Brush.AccentText"    Color="#FFFFFF" />
+
+   <!-- Alerts -->
+   <SolidColorBrush x:Key="Brush.InfoBg"  Color="#E7F1FB" />
+   <SolidColorBrush x:Key="Brush.InfoFg"  Color="#1C5C93" />
+   <SolidColorBrush x:Key="Brush.InfoBar" Color="#2A82E0" />
+   <SolidColorBrush x:Key="Brush.WarnBg"  Color="#FFF3CD" />
+   <SolidColorBrush x:Key="Brush.WarnFg"  Color="#8A6D3B" />
+   <SolidColorBrush x:Key="Brush.WarnBar" Color="#E0A800" />
+
+   <!-- Interaction overlays (hover/press). Theme-aware so hover darkens on light. -->
+   <SolidColorBrush x:Key="Brush.HoverOverlay"   Color="#14000000" />
+   <SolidColorBrush x:Key="Brush.PressedOverlay" Color="#22000000" />
+   <!-- Fixed darkening overlays for the accent-filled primary button (both themes). -->
+   <SolidColorBrush x:Key="Brush.DarkenHover"   Color="#1F000000" />
+   <SolidColorBrush x:Key="Brush.DarkenPressed" Color="#33000000" />
+</ResourceDictionary>

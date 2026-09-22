@@ -1,0 +1,11 @@
+{
+  "fogbugz": {
+    "url": "https://your-instance.fogbugz.com/",
+    "api_token": "YOUR_API_TOKEN_HERE"
+  },
+  "proxy": {
+    "url": "http://your-proxy:port",
+    "username": "yourname",
+    "password": ""
+  }
+}

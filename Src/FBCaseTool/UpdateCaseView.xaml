@@ -1,0 +1,77 @@
+<UserControl x:Class="FBCaseTool.UpdateCaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FontFamily="Segoe UI" FontSize="13">
+   <UserControl.InputBindings>
+      <KeyBinding Key="Escape" Command="{Binding CancelCommand}" />
+   </UserControl.InputBindings>
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+
+      <DockPanel Grid.Row="0">
+         <Label DockPanel.Dock="Left" Content="Case:" VerticalAlignment="Center" />
+         <Button DockPanel.Dock="Right" Content="_Load" MinWidth="64" Margin="8,0,0,0"
+                 Command="{Binding LoadCommand}" />
+         <TextBox VerticalAlignment="Center" Margin="8,0,0,0" Tag="Enter case number"
+                  Text="{Binding CaseId, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.InputBindings>
+               <KeyBinding Key="Enter" Command="{Binding LoadCommand}" />
+            </TextBox.InputBindings>
+         </TextBox>
+      </DockPanel>
+
+      <TextBlock Grid.Row="1" Text="{Binding CaseTitle}" TextTrimming="CharacterEllipsis"
+                 FontSize="12.5" Foreground="{DynamicResource Brush.TextMuted}" Margin="0,6,0,2" />
+
+      <Label Grid.Row="2" Content="Comment:" />
+      <TextBox Grid.Row="3" MinHeight="96" AcceptsReturn="True" TextWrapping="Wrap"
+               VerticalScrollBarVisibility="Auto"
+               IsEnabled="{Binding CanEdit}"
+               Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" />
+
+      <Label Grid.Row="4" Content="Assignee:" />
+      <ComboBox Grid.Row="5" IsEditable="True"
+                IsEnabled="{Binding CanEdit}"
+                ItemsSource="{Binding People}"
+                Text="{Binding Assignee, UpdateSourceTrigger=PropertyChanged}" />
+
+      <Label Grid.Row="6" Content="Status:" />
+      <ComboBox Grid.Row="7"
+                IsEnabled="{Binding CanEdit}"
+                ItemsSource="{Binding Statuses}"
+                SelectedItem="{Binding SelectedStatus}" />
+
+      <Border Grid.Row="8" Margin="0,12,0,0" Style="{StaticResource WarnAlert}"
+              Visibility="{Binding HasError, Converter={StaticResource BoolToVis}}">
+         <Grid>
+            <Border Width="4" HorizontalAlignment="Left" Margin="5" CornerRadius="2"
+                    Background="{DynamicResource Brush.WarnBar}" />
+            <TextBlock Margin="18,8,10,8" TextWrapping="Wrap"
+                       Foreground="{DynamicResource Brush.WarnFg}" Text="{Binding ErrorMessage}" />
+         </Grid>
+      </Border>
+
+      <DockPanel Grid.Row="9" Margin="0,16,0,0" LastChildFill="False">
+         <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center"
+                     Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}">
+            <ProgressBar Style="{StaticResource SlimBar}" Width="120" VerticalAlignment="Center" />
+            <TextBlock Text="Working&#8230;" Margin="10,0,0,0" VerticalAlignment="Center"
+                       Foreground="{DynamicResource Brush.TextMuted}" />
+         </StackPanel>
+         <Button DockPanel.Dock="Right" Content="OK" IsDefault="True" Margin="8,0,0,0"
+                 Style="{StaticResource PrimaryButton}" Command="{Binding OkCommand}" />
+         <Button DockPanel.Dock="Right" Content="Cancel" Command="{Binding CancelCommand}" />
+      </DockPanel>
+   </Grid>
+</UserControl>
