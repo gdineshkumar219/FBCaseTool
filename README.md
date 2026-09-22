@@ -7,9 +7,6 @@ top of the window switches between two panes:
   change straight back to FogBugz.
 - **Fetch** — download a case (and optionally its attachments) to a local `Case_<id>` folder.
 
-This tool is a trimmed-down sibling of **FBCaseUpdater**: the same Update / Fetch behaviour,
-without the Release Note mode (no Word / `Flux.Main.docx` dependency).
-
 ## How to use
 
 1. Start FBCaseTool.
